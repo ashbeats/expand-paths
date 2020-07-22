@@ -8,7 +8,7 @@ const fs = require("fs");
  * @url     https://github.com/ashbeats
  * @returns {Readonly<{expandUserPath: (function(*=, *=): string), expand: (function(*): function(*=, *=): string), expandAppData: (function(*=, *=): string), maybeReal: (function(*=, *): any)}>}
  */
-module.exports["default"] = function() {
+function expandPaths() {
   const maybeReal = (p, ensureExists) =>
     ensureExists ? fs.realpathSync(p) : p;
 
@@ -33,4 +33,6 @@ module.exports["default"] = function() {
     expand,
     maybeReal
   });
-};
+}
+
+module.exports = expandPaths();
