@@ -1,6 +1,6 @@
 {
   "name": "@recent-cli/expand-paths",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Quick way to resolve windows userdata and home paths",
   "main": "expand-paths.js",
   "scripts": {
