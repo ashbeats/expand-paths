@@ -1,7 +1,22 @@
 {
-  "name": "expand-paths",
+  "name": "@recent-cli/expand-paths",
   "version": "0.0.1",
+  "description": "Quick way to resolve windows userdata and home paths",
   "main": "expand-paths.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashbeats/expand-paths.git"
+  },
+  "keywords": [
+    "windows"
+  ],
   "author": "Ash <ashbeats@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ashbeats/expand-paths/issues"
+  },
+  "homepage": "https://github.com/ashbeats/expand-paths#readme"
 }

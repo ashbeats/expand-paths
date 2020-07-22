@@ -1,4 +1,4 @@
-# Quick way to get paths to %USERPROFILE%, %APPDATA%
+# Quick way to get paths to windows folders
 
 ## Usage
 
@@ -17,5 +17,8 @@ path_xyz = expandUserPath('.bash_history', true);
 // expandAppData works the same way
 ```
 
+Notes: 
+
+Can be used for `%USERPROFILE%, %APPDATA%` now directly.  
 
 

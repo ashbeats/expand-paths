@@ -1,0 +1,7 @@
+{
+  "name": "expand-paths",
+  "version": "0.0.1",
+  "main": "expand-paths.js",
+  "author": "Ash <ashbeats@gmail.com>",
+  "license": "MIT"
+}
