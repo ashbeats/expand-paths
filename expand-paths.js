@@ -12,20 +12,20 @@ module.exports["default"] = function() {
   const maybeReal = (p, ensureExists) =>
     ensureExists ? fs.realpathSync(p) : p;
 
-  const expand = envKey => (pathInsideUser, ensureExists = true) =>
-    maybeReal(path.join(process.env[envKey], pathInsideUser), ensureExists);
+  const expand = envKey => source => (pathInsideUser, ensureExists = true) =>
+    maybeReal(path.join(source[envKey], pathInsideUser), ensureExists);
 
   /**
    *
    * @type {function(*=, *=): string}
    */
-  const expandUserPath = expand("USERPROFILE");
+  const expandUserPath = expand("USERPROFILE")(process.env);
 
   /**
    *
    * @type {function(*=, *=): string}
    */
-  const expandAppData = expand("APPDATA");
+  const expandAppData = expand("APPDATA")(process.env);
 
   return Object.freeze({
     expandUserPath,

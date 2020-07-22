@@ -1,7 +1,21 @@
+# Quick way to get paths to %USERPROFILE%, %APPDATA%
+
+## Usage
+
+Examples:
+
+To resolve %USERPROFILE%/.bash_history
+
+```
+const { expandUserPath } = require('....');
+
+let path_xyz = expandUserPath('.bash_history');
+
+// to ensure the path exists
+path_xyz = expandUserPath('.bash_history', true);
+
+// expandAppData works the same way
+```
 
 
-this project is used by @recent-win-cli. 
 
-I'll update this doc soon. 
-
-- ash
