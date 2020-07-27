@@ -38,10 +38,3 @@ module.exports = {
 };
 
 // expandUserPath(".") is platform agnostic. Works on linux, mac and windows
-// all functions return null if
-// windows = false;
-// process.env['HOME'] = process.env['USERPROFILE']
-
-
-console.log("expandUserPath", expandUserPath("."));
-console.log("expandUserPath", expandAppData("."));
