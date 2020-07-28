@@ -2,37 +2,39 @@
 
 const path = require("path");
 const fs = require("fs");
-/***
- *  Quick way to get paths to %USERPROFILE%, %APPDATA%. 
- *
- * @url     https://github.com/ashbeats
- * @returns {Readonly<{expandUserPath: (function(*=, *=): string), expand: (function(*): function(*=, *=): string), expandAppData: (function(*=, *=): string), maybeReal: (function(*=, *): any)}>}
- */
-function expandPaths() {
-  const maybeReal = (p, ensureExists) =>
-    ensureExists ? fs.realpathSync(p) : p;
 
-  const expand = envKey => source => (pathInsideUser, ensureExists = true) =>
-    maybeReal(path.join(source[envKey], pathInsideUser), ensureExists);
+// =====================================================
+// Quick way to get paths to %USERPROFILE%, %APPDATA% and others.
+// Works on linux and windows
+// =====================================================
 
-  /**
-   *
-   * @type {function(*=, *=): string}
-   */
-  const expandUserPath = expand("USERPROFILE")(process.env);
+const { platform } = process;
+let windows = platform.startsWith("win");
+const maybeReal = (p, ensureExists) => (ensureExists ? fs.realpathSync(p) : p);
 
-  /**
-   *
-   * @type {function(*=, *=): string}
-   */
-  const expandAppData = expand("APPDATA")(process.env);
+// prettier-ignore
+const expandAnyPath = 
+              source => 
+              envKey => 
+              ( relativeChildPath = ".",  ensureExists = true ) => 
+                  !(envKey in source)                   
+                  ? null 
+                  : maybeReal(path.join(source[envKey], relativeChildPath), ensureExists);
 
-  return Object.freeze({
-    expandUserPath,
-    expandAppData,
-    expand,
-    maybeReal
-  });
-}
+// prettier-ignore
+const expandUserPath = 
+          (relativeChildPath = ".",  ensureExists = true ) => 
+              expandAnyPath(process.env)
+              (windows === true ? "USERPROFILE" : "HOME")
+              (relativeChildPath, ensureExists);
 
-module.exports = expandPaths();
+const expandAppData = expandAnyPath(process.env)("APPDATA");
+
+module.exports = {
+  expandAppData,
+  expandUserPath,
+  expandAnyPath,
+  maybeReal
+};
+
+// expandUserPath(".") is platform agnostic. Works on linux, mac and windows
