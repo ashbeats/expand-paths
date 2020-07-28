@@ -1,6 +1,7 @@
 # Expand-Paths
 
 
+![CI](https://github.com/ashbeats/expand-paths/workflows/CI/badge.svg)
 
 ### Install
 
